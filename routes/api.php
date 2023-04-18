@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\API\AuthenticatedControllerMahasiswa;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controller\MahasiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +20,16 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Siswa
+Route::get('/auth/mahasiswas', [MahasiswaController::class, 'index']);
+Route::get('/auth/edit-mahasiswa/{id}', [MahasiswaController::class, 'show']);
+Route::put('/auth/update-mahasiswa/{id}', [MahasiswaController::class, 'update']);
+Route::delete('/auth/hapus-mahasiswa/{id}', [MahasiswaController::class, 'destroy']);
+Route::post('/auth/register-mahasiswa', [MahasiswaController::class, 'register']);
+
+Route::post('/auth/me', [AuthenticatedControllerMahasiswa::class, 'me']);
+Route::post('/auth/login', [AuthenticatedControllerMahasiswa::class, 'login']);
+Route::post('/auth/logout', [AuthenticatedControllerMahasiswa::class, 'logout']);
+Route::post('/auth/refresh', [AuthenticatedControllerMahasiswa::class, 'refresh']);
+//Route::post('/auth/logout', [AuthenticatedControllerMahasiswa::class, 
