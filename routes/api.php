@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\API\AuthenticatedControllerMahasiswa;
+use App\Http\Controllers\API\AuthenticatedControllerM;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,8 +28,8 @@ Route::put('/auth/update-mahasiswa/{id}', [MahasiswaController::class, 'update']
 Route::delete('/auth/hapus-mahasiswa/{id}', [MahasiswaController::class, 'destroy']);
 Route::post('/auth/register-mahasiswa', [MahasiswaController::class, 'register']);
 
-Route::post('/auth/me', [AuthenticatedControllerMahasiswa::class, 'me']);
-Route::post('/auth/login', [AuthenticatedControllerMahasiswa::class, 'login']);
-Route::post('/auth/logout', [AuthenticatedControllerMahasiswa::class, 'logout']);
-Route::post('/auth/refresh', [AuthenticatedControllerMahasiswa::class, 'refresh']);
+Route::post('/auth/me', [AuthenticatedControllerM::class, 'me']);
+Route::post('/auth/login', [AuthenticatedControllerM::class, 'login']);
+Route::post('/auth/logout', [AuthenticatedControllerM::class, 'logout']);
+Route::post('/auth/refresh', [AuthenticatedControllerM::class, 'refresh']);
 //Route::post('/auth/logout', [AuthenticatedControllerMahasiswa::class, 

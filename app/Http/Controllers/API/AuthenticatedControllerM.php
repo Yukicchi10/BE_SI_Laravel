@@ -7,12 +7,12 @@ use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AuthenticatedControllerMahasiswa extends BaseController
+class AuthenticatedControllerM extends BaseController
 {
 
     public function username()
     {
-        return 'nim';
+        return 'email';
     }
 
     /**
@@ -24,7 +24,7 @@ class AuthenticatedControllerMahasiswa extends BaseController
     public function store(Request $request)
     {
         try {
-            $user = Mahasiswa::where('nim', $request->NIM)->first();
+            $user = Mahasiswa::where('email', $request->Email)->first();
             if (!$user) {
                 return $this->sendError('username', $this->username() . ' not found', 401);
             }
@@ -36,7 +36,7 @@ class AuthenticatedControllerMahasiswa extends BaseController
             $dataUser = [
                 'id' => $user->idMahasiswa,
                 'name' => $user->nama,
-                'nim' => $user->nim,
+                'email' => $user->email,
                 'token' => $token
             ];
 
@@ -81,7 +81,7 @@ class AuthenticatedControllerMahasiswa extends BaseController
      */
     public function login()
     {
-        $credentials = request(['nim', 'password']);
+        $credentials = request(['email', 'password']);
         if (!$token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Data Tidak Ditemukan, Silahkan Daftar Terlebih Dahulu'], 401);
         }
